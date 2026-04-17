@@ -4,13 +4,15 @@ RUN apk update && apk add \
     nodejs \
     gcc g++ cmake make \
     tmux dropbear bash \
-    linux-headers
+    linux-headers \
+    nginx
 
 WORKDIR /workdir
 
 COPY badvpn-src/ ./badvpn-src
 COPY proxy3.js ./
 COPY run.sh ./
+COPY nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR /workdir/badvpn-src/build
 RUN cmake .. \
